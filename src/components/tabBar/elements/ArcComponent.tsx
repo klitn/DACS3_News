@@ -12,19 +12,7 @@ const ArcComponent = ({height, width}: ArcComponentProps) => {
   // const arcPath = '';
   const arcBorder = `M 0 0 Q ${width / 2} ${height / 2} ${width} 0`;
   return (
-    <Canvas style={{height: height, ...StyleSheet.absoluteFillObject}}>
-      <Path path={arcPath}>
-        <LinearGradient
-          colors={['rgba(58, 58, 106, 0.26)', 'rgba(37, 36, 76, 0.26)']}
-          start={vec(width / 2, 0)}
-          end={vec(width / 2, height)} />
-      </Path>
-      <Path
-        path={arcBorder}
-        style={'stroke'}
-        strokeWidth={0.5}
-        color={'rgba(117, 130, 244, 0.5)'} />
-    </Canvas>
+    <View />
   )
 }
 

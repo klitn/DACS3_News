@@ -14,23 +14,8 @@ const TabBarItems = () => {
   const buttonCenterX = width / 2 - circleRadius;
 
   return (
-    <View style={styles.tabView}>
-      <MapIcon />
-      <TrapezoidBackground width={trapezoidWidth} height={trapezoidHeight} />
-      <Pressable style={{
-        ...StyleSheet.absoluteFillObject,
-        left: buttonCenterX,
-        top: 12,
-        width: circleRadius * 2,
-        height: circleRadius * 2,
-      }}>
-        {({pressed}) => {
-          return (
-            <CircleButon radius={circleRadius} pressed={pressed} />
-          );
-        }}
-      </Pressable>
-      <ListIcon />
+    <View >
+     
     </View>
   )
 }

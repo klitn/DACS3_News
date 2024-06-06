@@ -9,16 +9,7 @@ const WeatherTabBar = () => {
   const tabBarHeight = 88;
   const {width, height} = useApplicationDimensions();
   return (
-    <BlurView
-      intensity={5}
-      tint='light'
-      style={{
-        height: tabBarHeight,
-        ...StyleSheet.absoluteFillObject,
-        top: height - tabBarHeight}}>
-      <ArcComponent height={tabBarHeight} width={width} />
-      <TabBarItems />
-    </BlurView>
+    <View></View>
   )
 }
 
