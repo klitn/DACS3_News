@@ -50,12 +50,12 @@ export default function HomeScreen() {
     queryKey: ["recommededNewss"],
     queryFn: fetchRecommendedNews,
   });
-  const signOutHandle = () => {
-    // Add your sign out logic here
-    console.log("sign out");
-    auth.signOut();
-    navigation("/login");
-  };
+  // const signOutHandle = () => {
+  //   // Add your sign out logic here
+  //   console.log("sign out");
+  //   auth.signOut();
+  //   navigation("/login");
+  // };
   useEffect(() => {
     console.log("current user>>", currentUser);
     console.log("userLoggedIn>>", userLoggined);
@@ -67,7 +67,7 @@ export default function HomeScreen() {
       <View>
         {/* Header */}
         <Header />
-        <Button onClick={signOutHandle}>Sign Out</Button>
+        {/* <Button onClick={signOutHandle}>Sign Out</Button> */}
         {/* Breaking News */}
         {isBreakingLoading ? (
           <Loading />

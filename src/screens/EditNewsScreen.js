@@ -80,6 +80,15 @@ const EditNewsScreen = () => {
     });
   };
 
+  function getFormattedDate() {
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const year = currentDate.getFullYear();
+  
+    return `${day}/${month}/${year}`;
+  }
+
   //Used to Pick Image from Gallery
 
   const pickImage = async () => {
@@ -133,6 +142,7 @@ const EditNewsScreen = () => {
       .then((resp) => {
         getDownloadURL(storageRef).then(async (downloadUrl) => {
           values.image = downloadUrl;
+          values.createdAt= getFormattedDate();
           console.log("Download url ==> !");
           const docRef = await setDoc(doc(db, "PostNews", itemId), values);
           // if (docRef.id) {

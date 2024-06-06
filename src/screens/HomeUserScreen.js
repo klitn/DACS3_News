@@ -67,7 +67,7 @@ export default function HomeUserScreen() {
   const renderItem1 = ({ item, index }) => {
     return (
       <TouchableOpacity
-        className=" mx-4 space-y-1"
+        className=" mx-2 space-y-1"
         key={index}
         onPress={() => handleClick(item)}
       >
@@ -89,9 +89,9 @@ export default function HomeUserScreen() {
           <View className="w-[70%] pl-10 justify-center space-y-1">
             {/* Author */}
             <Text className="text-xs font-bold text-gray-900 dark:text-neutral-300">
-              {item?.author?.length > 20
-                ? item.author.slice(0, 20) + "..."
-                : item.author}
+              {item?.source?.length > 20
+                ? item.source.slice(0, 20) + "..."
+                : item.source}
             </Text>
 
             {/* Title */}
@@ -106,6 +106,7 @@ export default function HomeUserScreen() {
                 ? item.title.slice(0, 50) + "..."
                 : item.title}
             </Text>
+
 
             {/* Date */}
             <Text className="text-xs text-gray-700 dark:text-neutral-300">
@@ -230,7 +231,7 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     backgroundColor: "#FFFFFF",
-    marginVertical: 10,
+    marginVertical: 5,
     marginHorizontal: 10,
     padding: 3,
     borderRadius: 10,
