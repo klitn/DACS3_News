@@ -17,6 +17,9 @@ export default function Header(props) {
   const [image, setImage] = useState(null);
 
   const turnLogin = () => {
+    signOut(auth).catch((error) => {
+      console.error("Error signing out: ", error);
+    });
     navigation.navigate("Login");
   };
   const logout = () => {
