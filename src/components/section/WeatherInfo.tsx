@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,LogBox } from 'react-native'
 import { Weather } from '../../models/Weather';
 import { DEGREE_SYMBOL } from '../../../utils/Constants';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -8,6 +8,7 @@ import * as Location from 'expo-location';
 interface WeatherInfoProps {
   weather: Weather;
 };
+LogBox.ignoreAllLogs();
 
 const WeatherInfo = ({weather}: WeatherInfoProps) => {
   
