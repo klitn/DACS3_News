@@ -7,6 +7,7 @@ import HomeScreen from "../screens/HomeScreen";
 import NewsDetails from "../screens/NewsDetails";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import DiscoverScreen from "../screens/DiscoverScreen";
+import ChatBot from "../screens/ChatBotAssistant";
 import SavedScreen from "../screens/SavedScreen";
 import SplashScreens from "../screens/SplashScreens";
 import { Ionicons } from "@expo/vector-icons";
@@ -82,7 +83,7 @@ export default function AppNavigation() {
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Discover" component={DiscoverScreen} />
         <Tab.Screen name="Saved" component={SavedScreen} />
-        <Tab.Screen name="Search" component={SearchScreen} />
+        <Tab.Screen name="Search" component={ChatBot} />
         <Tab.Screen
           name="Weather"
           component={WeatherScreen}
