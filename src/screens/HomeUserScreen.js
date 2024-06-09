@@ -8,7 +8,6 @@ import Foundation from 'react-native-vector-icons/Foundation';
 import { doc, deleteDoc, onSnapshot } from "firebase/firestore";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import app from "../../firebase"

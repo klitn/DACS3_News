@@ -11,7 +11,6 @@ import ChatBot from "../screens/ChatBotAssistant";
 import SavedScreen from "../screens/SavedScreen";
 import SplashScreens from "../screens/SplashScreens";
 import { Ionicons } from "@expo/vector-icons";
-import {AntDesign} from "@expo/vector-icons";
 import SearchScreen from "../screens/SearchScreen";
 import { useColorScheme } from "nativewind";
 import LoginScreen from "../screens/LoginScreen";
@@ -20,7 +19,6 @@ import ForgotPassword from "../screens/ForgotPasswordScreen";
 import HomeUserScreen from "../screens/HomeUserScreen";
 import AddNewsScreen from "../screens/AddNewsScreen";
 import EditNewsScreen from "../screens/EditNewsScreen";
-import ListNews from "../screens/ListNews";
 import ItemList from "../screens/ItemList";
 import SourceList from "../screens/SourceList";
 import WeatherScreen from "../screens/WeatherScreen";
@@ -48,8 +46,8 @@ export default function AppNavigation() {
               iconName = "compass-outline";
             } else if (route.name === "Saved") {
               iconName = "bookmark-outline";
-            } else if (route.name === "Search") {
-              iconName = "search-outline";
+            } else if (route.name === "ChatBot") {
+              iconName = "chatbubbles-outline";
             }else if (route.name === "Weather") {
               iconName = "grid-outline";
             }
@@ -83,7 +81,7 @@ export default function AppNavigation() {
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Discover" component={DiscoverScreen} />
         <Tab.Screen name="Saved" component={SavedScreen} />
-        <Tab.Screen name="Search" component={ChatBot} />
+        <Tab.Screen name="ChatBot" component={ChatBot} />
         <Tab.Screen
           name="Weather"
           component={WeatherScreen}

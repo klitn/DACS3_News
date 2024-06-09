@@ -18,12 +18,13 @@ export default function ChatBot() {
 
 			{/* Header */}
 			<View style={styles.header}>
-				<Image source={require("../assets/icons/robot.png")} style={styles.icon} />
-				<Text style={{ fontSize: 24, fontWeight: "800", color: "#323232" }}>Gemini AI</Text>
+				<Image source={require("../assets/icons/chatbot.png")} style={styles.icon} />
+				<Text style={{ fontSize: 24, fontWeight: "800", color: "#1877F2", }}>Kabar AI</Text>
 			</View>
 
 			{/* Content */}
 			<FlatList
+			showsVerticalScrollIndicator={false}
 				style={{ paddingHorizontal: 16, marginBottom: 80 }}
 				data={listData}
 				renderItem={({ item }) => (
@@ -37,7 +38,7 @@ export default function ChatBot() {
 
 			{/* Search-Bar */}
 			<View style={styles.searchBar}>
-				<TextInput placeholder="Ask to Gemini AI" style={styles.input} value={inputText} onChangeText={(text) => setInputText(text)} selectionColor={"#323232"}></TextInput>
+				<TextInput placeholder="Ask to Kabar AI" style={styles.input} value={inputText} onChangeText={(text) => setInputText(text)} selectionColor={"#323232"}></TextInput>
 				<TouchableOpacity onPress={SearchInput}>
 					<Image source={require("../assets/icons/right-arrow.png")} style={styles.icon} />
 				</TouchableOpacity>
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		gap: 16,
 		paddingTop: 36,
+		backgroundColor: "#ffffff",
 	},
 	header: {
 		flexDirection: "row",
@@ -60,8 +62,8 @@ const styles = StyleSheet.create({
 		gap: 8,
 	},
 	icon: {
-		width: 32,
-		height: 32,
+		width: 25,
+		height: 40,
 	},
 	searchBar: {
 		backgroundColor: "#ffffff",
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		paddingHorizontal: 32,
-		paddingVertical: 16,
+		paddingVertical: 8,
 		gap: 8,
 	},
 	input: {

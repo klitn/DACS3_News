@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import Markdown from "react-native-markdown-display";
 
 const date = new Date();
-const API_KEY = "API key";
+const API_KEY = "AIzaSyASWUxre2cXksS42hb7INNV9K9apMhcjYA";
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export default function Response(props) {
@@ -25,8 +25,8 @@ export default function Response(props) {
 		<View style={styles.response}>
 			<View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
 				<View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-					<Image source={require("../../assets//icons/robot.png")} style={styles.icon} />
-					<Text style={{ fontWeight: 600 }}>Gemini</Text>
+					<Image source={require("../../assets//icons/chatbot.png")} style={{height:40, width:25}} />
+					<Text style={{ fontWeight: 600 }}>Kabar</Text>
 				</View>
 				<Text style={{ fontSize: 10, fontWeight: "600" }}>
 					{date.getHours()}:{date.getMinutes()}
@@ -41,10 +41,11 @@ const styles = StyleSheet.create({
 	response: {
 		flexDirection: "column",
 		gap: 8,
-		backgroundColor: "#fafafa",
+		backgroundColor: "#ffffff",
 		marginBottom: 8,
 		padding: 16,
 		borderRadius: 16,
+		
 	},
 	icon: {
 		width: 28,
