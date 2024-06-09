@@ -160,7 +160,7 @@ export default function SavedScreen() {
           <View className="w-[70%] pl-4 justify-center space-y-1">
             {/* Author */}
             <Text className="text-xs font-bold text-gray-900 dark:text-neutral-300">
-              {item.author}
+              {item.source}
             </Text>
 
             {/* Title */}
@@ -178,7 +178,7 @@ export default function SavedScreen() {
 
             {/* Date */}
             <Text className="text-xs text-gray-700 dark:text-neutral-300">
-              {formatDate(item.publishedAt)}
+              {item.createdAt}
             </Text>
           </View>
 
