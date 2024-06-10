@@ -103,11 +103,16 @@ export default function SavedScreen() {
 
   const clearSavedArticles = async () => {
     try {
-      await AsyncStorage.removeItem("savedArticles");
-      setSavedArticles([]);
-      console.log("Clear all saved articles");
+      const bookmarkedCollectionRef = collection(db, `users/${currentUser.uid}/bookmarked`);
+      const bookmarkedSnapshot = await getDocs(bookmarkedCollectionRef);
+      const deletePromises = bookmarkedSnapshot.docs.map(doc => deleteDoc(doc.ref));
+      await Promise.all(deletePromises);
+
+      setArticles([]);
+      setBookmarkStatus([]);
+      console.log("Cleared all saved articles");
     } catch (error) {
-      // console.log("Error clearing saved articles", error);
+      console.error("Error clearing saved articles", error);
     }
   };
 
