@@ -45,83 +45,61 @@ export default function SavedScreen() {
     fetchData();
   }, [articles]);
   // Function to format the date
-  function formatDate(isoDate) {
-    const options = {
-      weekday: "short",
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    };
-    const date = new Date(isoDate);
-    return date.toLocaleDateString(undefined, options);
-  }
+ 
 
   const toggleBookmarkAndSave = async (item, index) => {
+    const bookmarkRef = doc(db, `users/${currentUser.uid}/bookmarked`, item.id);
+
     try {
-      const savedArticles = await AsyncStorage.getItem("savedArticles");
-      let savedArticlesArray = savedArticles ? JSON.parse(savedArticles) : [];
+      const docSnap = await getDoc(bookmarkRef);
 
-      // Check if the article is already in the bookmarked list
-      const isArticleBookmarked = savedArticlesArray.some(
-        (savedArticle) => savedArticle.url === item.url
-      );
-
-      if (!isArticleBookmarked) {
-        // If the article is not bookmarked, add it to the bookmarked list
-        savedArticlesArray.push(item);
-        await AsyncStorage.setItem(
-          "savedArticles",
-          JSON.stringify(savedArticlesArray)
-        );
-        const updatedStatus = [...bookmarkStatus];
-        updatedStatus[index] = true;
-        setBookmarkStatus(updatedStatus);
-        // console.log("Article is bookmarked");
+      if (docSnap.exists()) {
+        await deleteDoc(bookmarkRef);
       } else {
-        // If the article is already bookmarked, remove it from the list
-        const updatedSavedArticlesArray = savedArticlesArray.filter(
-          (savedArticle) => savedArticle.url !== item.url
-        );
-        await AsyncStorage.setItem(
-          "savedArticles",
-          JSON.stringify(updatedSavedArticlesArray)
-        );
-        const updatedStatus = [...bookmarkStatus];
-        updatedStatus[index] = false;
-        setBookmarkStatus(updatedStatus);
-        // console.log("Article is removed from bookmarks");
+        await setDoc(bookmarkRef, {
+          url: item.url,
+          title: item.title,
+          image: item.image,
+          description: item.description,
+          category: item.category,
+          source: item.source,
+          createdAt: item.createdAt
+        });
       }
+
+      // Update the UI
+      setBookmarkStatus((prevStatus) => {
+        const newStatus = [...prevStatus];
+        newStatus[index] = !newStatus[index];
+        return newStatus;
+      });
     } catch (error) {
-      // console.log("Error Saving/Removing Article", error);
+      console.error("Error updating bookmark: ", error);
     }
   };
 
   // Load saved articles from AsyncStorage when the screen gains focus
-  useFocusEffect(
-    useCallback(() => {
-      const loadSavedArticles = async () => {
-        try {
-          const savedArticles = await AsyncStorage.getItem("savedArticles");
-          const savedArticlesArray = savedArticles
-            ? JSON.parse(savedArticles)
-            : [];
+  useEffect(() => {
+    const loadSavedArticles = async () => {
+      try {
+        const bookmarkedCollection = collection(db, `users/${currentUser.uid}/bookmarked`);
+        const bookmarkedSnapshot = await getDocs(bookmarkedCollection);
+        const bookmarkedDocs = bookmarkedSnapshot.docs.map(doc => doc.data());
 
-          // const isArticleBookmarkedList = urlList.map((url) =>
-          //   savedArticlesArray.some((savedArticle) => savedArticle.url === url)
-          // );
+        // Check if each URL in 'urlList' exists in the bookmarked list
+        const isArticleBookmarkedList = urlList.map((url) =>
+          bookmarkedDocs.some((bookmarkedDoc) => bookmarkedDoc.url === url)
+        );
 
-          // Set the bookmark status for all items based on the loaded data
-          // setBookmarkStatus(isArticleBookmarkedList);
-          setSavedArticles(savedArticlesArray);
-        } catch (error) {
-          // console.log("Error loading saved articles", error);
-        }
-      };
+        // Set the bookmark status for all items based on the loaded data
+        setBookmarkStatus(isArticleBookmarkedList);
+      } catch (error) {
+        console.log("Error Loading Saved Articles", error);
+      }
+    };
 
-      loadSavedArticles();
-      // console.log("Pull saved articles from AsyncStorage");
-    }, [navigation, urlList]) // Include 'navigation' in the dependencies array if needed
-  );
+    loadSavedArticles();
+  }, [navigation, urlList]);
 
   const clearSavedArticles = async () => {
     try {
